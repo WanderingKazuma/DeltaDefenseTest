@@ -1,0 +1,13 @@
+Creation of an account was tested, althought at the time of running and implementation, emails were taking anywhere from 10-15 minutes to come through to putsbox. This is usually not something that would be acceptable for a CI/CD job. At max we want these jobs to take 10-15 minutes run-time to finish the entire automation run.
+Changing the Account Password, and attempting to log in again was also tested.
+Navigation around the dashboard was demonstrated in some of the actions around changing the password, and navigating to the user videos. Further testing here could have been done, if time allowed.
+Obtaining an array (in this case a IList<IWebElement> Collection) of the videos was attempted. Exporting to excel in this framework requires some C# libraries and interop with Microsoft Excel. Can be done, but I had some trouble getting libraries to cooperate.
+Search and article evaluation was done, but rather quickly. More detail could have been validated here with the pages. Directions a bit unclear as it implies that 3 reasons are visible without scrolling, or that 3 reasons are at least on the first page of the article, when all 7 reasons are on the first page and none visible without scrolling.
+
+Framework is Specflow (Cucumber for C#) based on NUnit Runners. Selenium as the driver, and wrapper written for the driver (BrowserAgent.cs)
+
+Wrapper was written as for most test environments, we want to be able to switch between different browsers, and between local execution and remote exectution for when we are running on CI/CD. The BrowserAgent class is designed to abstract these preferences for easier configuration and change of configuration when needed.
+
+Page Object Model was followed for the most part, exceptions being the article and search results. These could also be included in the page model at some point, discussion around how they might fit within that model may be necessary.
+
+Specflow step definitions are currently in one file. Proper design dictates that those follow page object model, or adhere to a Screenplay format. Intention here was to follow a screenplay format, however since most of the testing was around user creation, multiple actors was not a required property.
